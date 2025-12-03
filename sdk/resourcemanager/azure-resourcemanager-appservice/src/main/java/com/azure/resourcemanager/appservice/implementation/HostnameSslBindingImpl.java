@@ -221,7 +221,7 @@ class HostnameSslBindingImpl<FluentT extends WebAppBase, FluentImplT extends Web
             String alias = ks.aliases().nextElement();
             X509Certificate certificate = (X509Certificate) ks.getCertificate(alias);
             inStream.close();
-            MessageDigest sha = MessageDigest.getInstance("SHA-1");
+            MessageDigest sha = MessageDigest.getInstance("SHA-256"); // Updated to SHA-256
             return com.azure.resourcemanager.appservice.implementation.Utils
                 .base16Encode(sha.digest(certificate.getEncoded()));
         } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException ex) {
